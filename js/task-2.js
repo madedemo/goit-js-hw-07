@@ -30,14 +30,22 @@ const images = [
 
 const galleryList = document.querySelector('.gallery');
 
-    images.forEach(image => {
-      const li = document.createElement('li');
-      li.classList.add('gallery-item');
+function createGallery(imagesArray) {
+  const galleryItems = [];
 
-      const img = document.createElement('img');
-      img.src = image.url;
-      img.alt = image.alt;
+  imagesArray.forEach(image => {
+    const listItem = document.createElement('li');
+    listItem.classList.add('gallery-item');
 
-      li.appendChild(img);
-      galleryList.appendChild(li);
-    });
+    const imageElement = document.createElement('img');
+    imageElement.src = image.url;
+    imageElement.alt = image.alt;
+
+    listItem.appendChild(imageElement);
+    galleryItems.push(listItem);
+  });
+
+  galleryList.append(...galleryItems);
+}
+
+createGallery(images);
